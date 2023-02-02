@@ -6,7 +6,7 @@ namespace Player.Skills
     public class GrowVine : MonoBehaviour
     {
         [SerializeField] private GameObject vinePrefab;
-        [SerializeField] private float maxVineSize;
+        [SerializeField] private float maxVineSize, vineCorrectionOffset;
         [SerializeField] private LayerMask mask;
         [SerializeField] private Vector3 offset;
         private void OnEnable()
@@ -20,7 +20,7 @@ namespace Player.Skills
         
         private void PlayerInputOnSkillPressed()
         {
-            Instantiate(vinePrefab, transform.position - offset, Quaternion.identity).transform.localScale = new Vector3(1,VineSize(),1) + offset;
+            Instantiate(vinePrefab, transform.position - offset, Quaternion.identity).transform.localScale = new Vector3(1,VineSize()+vineCorrectionOffset,1) + offset;
         }
 
         float VineSize()
