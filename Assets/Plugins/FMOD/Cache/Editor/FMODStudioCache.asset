@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: FProject/Global/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638106231060105599
+  lastModified: 638107112566114103
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1486
   Exists: 1
 --- !u!114 &-792624133224437600
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: FProject/Global/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638106231060135502
+  lastModified: 638107112566114103
   FileSizes:
   - Name: Desktop
-    Value: 712
+    Value: 836
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -61,5 +61,5 @@ MonoBehaviour:
   - {fileID: -1118562486217809464}
   StringsBanks:
   - {fileID: -792624133224437600}
-  cacheTime: 638106231060135502
+  cacheTime: 638107112566114103
   cacheVersion: 131601
