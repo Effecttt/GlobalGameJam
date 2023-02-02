@@ -10,10 +10,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2664F8FA-D8EE-44DB-A5A8-718D1585DE70/fb/32d2b753/SpringJoint2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/Misc/Objects/ArmRendererHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Skills/GrowVine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enviroment/MovableBlock.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/ArmRotation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/GrapplingGun/GrapplingRope.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/GrapplingGun/GrapplingGun.cs" />
       </list>
     </option>
@@ -59,6 +69,8 @@
       <option name="presentableId" value="Default" />
       <updated>1675193222766</updated>
       <workItem from="1675193253815" duration="1490000" />
+      <workItem from="1675195093313" duration="12755000" />
+      <workItem from="1675284853055" duration="17260000" />
     </task>
     <servers />
   </component>

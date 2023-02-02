@@ -127,6 +127,9 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Environment" t="Include">
+            <e p="MovableBlock.cs" t="Include" />
+          </e>
           <e p="Interaction" t="Include">
             <e p="InteractableObject.cs" t="Include" />
             <e p="TestBall.cs" t="Include" />
@@ -137,6 +140,7 @@
             </e>
           </e>
           <e p="Player" t="Include">
+            <e p="ArmRotation.cs" t="Include" />
             <e p="GrapplingGun" t="Include">
               <e p="GrapplingGun.cs" t="Include" />
               <e p="GrapplingRope.cs" t="Include" />
@@ -150,6 +154,9 @@
               <e p="GrowVine.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="TechScripts" t="Include">
+          <e p="Ray_Raycast.cs" t="Include" />
         </e>
       </e>
       <e p="FMODUnity.csproj" t="IncludeRecursive" />
