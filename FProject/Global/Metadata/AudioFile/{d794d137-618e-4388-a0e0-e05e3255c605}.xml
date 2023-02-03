@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d794d137-618e-4388-a0e0-e05e3255c605}">
+		<property name="assetPath">
+			<value>Musics/Menu/GGj_Menu music sem delay.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>67.887505668934239</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c3cdf47a-0c86-4427-ba27-4c2a01f16667}</destination>
+		</relationship>
+	</object>
+</objects>

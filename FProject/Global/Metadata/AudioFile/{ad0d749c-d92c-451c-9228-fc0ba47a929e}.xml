@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{ad0d749c-d92c-451c-9228-fc0ba47a929e}">
 		<property name="assetPath">
-			<value>Musics/Projeto_globalgamejam.wav</value>
+			<value>Musics/Gameplay/Projeto_globalgamejam.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
