@@ -127,6 +127,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AnimationHelper.cs" t="Include" />
           <e p="Checks" t="Include">
             <e p="Ground.cs" t="Include" />
           </e>
@@ -173,6 +174,7 @@
               <e p="GrowVine.cs" t="Include" />
             </e>
           </e>
+          <e p="SongManager.cs" t="Include" />
         </e>
         <e p="TechScripts" t="Include">
           <e p="BounceRay.cs" t="Include" />

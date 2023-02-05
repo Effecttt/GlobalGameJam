@@ -1,6 +1,7 @@
 using System;
 using Checks;
 using Controllers;
+using Player.Movement;
 using UnityEngine;
 
 namespace Player.Capabilities
@@ -23,8 +24,11 @@ namespace Player.Capabilities
         private float coyoteCounter;
         
         private bool desiredJump;
-        private bool onGround;
+        public bool onGround;
         private bool isJumping;
+        private bool land;
+
+        public static event Action landSound;
 
         private void Awake()
         {
@@ -37,6 +41,14 @@ namespace Player.Capabilities
         private void Update()
         {
             desiredJump |= input.RetrieveJumpInput();
+            if (!onGround)
+            {
+                land = true;
+            } else if (onGround && land)
+            {
+                land = false;
+                landSound?.Invoke();
+            }
         }
 
         private void FixedUpdate()
