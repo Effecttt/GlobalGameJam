@@ -11,8 +11,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/790A4385-8B4B-404F-BE02-A2B7B4A0D9D6/94/80c94e5d/LayerMask.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ScaleDownBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interaction/InteractEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/TransformDownBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/InputController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2664F8FA-D8EE-44DB-A5A8-718D1585DE70/fb/32d2b753/SpringJoint2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Jump.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -21,10 +27,26 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Skills/GrowVine.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enviroment/MovableBlock.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/ArmRotation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/GrapplingGun/GrapplingRope.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerParameters.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerExtraas.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerExtras.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Move.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/InputController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Jump.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/Parallax.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Checks/Ground.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/GrapplingGun/GrapplingGun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Objects/ScaleDownBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Objects/TransformDownBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Misc/BoxConverter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/InteractEvent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/InteractableObject.cs" />
       </list>
     </option>
   </component>
@@ -71,6 +93,8 @@
       <workItem from="1675193253815" duration="1490000" />
       <workItem from="1675195093313" duration="12755000" />
       <workItem from="1675284853055" duration="17260000" />
+      <workItem from="1675460292996" duration="14567000" />
+      <workItem from="1675520237439" duration="9855000" />
     </task>
     <servers />
   </component>
@@ -81,5 +105,15 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="794" y="236" key="RiderGenerateDialog" timestamp="1675462646451">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="236" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1675462646451" />
+    <state x="623" y="225" key="search.everywhere.popup" timestamp="1675471841520">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1675471841520" />
   </component>
 </project>

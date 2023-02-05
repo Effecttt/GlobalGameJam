@@ -1,7 +1,10 @@
 ﻿using System;
+using Checks;
 using Environment;
+using Player.Capabilities;
 using Player.Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.GrapplingGun
 {
@@ -9,24 +12,24 @@ namespace Player.GrapplingGun
     {
         public static event Action Swing, ExitSwing, EndRope;
         public Transform firePoint;
-        public GameObject controlSupport;
+        [HideInInspector]public GameObject controlSupport;
 
         [SerializeField] GrapplingRope grappleRope;
-        [SerializeField] private PlayerMovement movement;
+        [SerializeField] private Move movement;
 
         [SerializeField] private State state = State.Swing;
         
         [SerializeField] private bool grappleToAll;
-        [SerializeField] private LayerMask grappableLayerNumber;
+        [SerializeField] private LayerMask grappableArea;
 
-        [SerializeField] Camera mCamera;
+        [FormerlySerializedAs("mCamera")] [SerializeField] Camera cam;
 
-        [SerializeField] Transform gunHolder;
+        [SerializeField] Transform playerTransform;
         [SerializeField] Transform gunPivot;
         [SerializeField] private GameObject arm;
 
-        [SerializeField] SpringJoint2D mSpringJoint2D;
-        [SerializeField] Rigidbody2D mRigidbody;
+        [FormerlySerializedAs("mSpringJoint2D")] [SerializeField] SpringJoint2D sprintJoint;
+        [FormerlySerializedAs("mRigidbody")] [SerializeField] Rigidbody2D rb;
         
         [SerializeField] private bool hasMaxDistance;
         [SerializeField] private float maxDistance = 20;
@@ -49,7 +52,7 @@ namespace Player.GrapplingGun
         private void Start()
         {
             grappleRope.enabled = false;
-            mSpringJoint2D.enabled = false;
+            sprintJoint.enabled = false;
         }
         private void Update()
         {
@@ -58,7 +61,7 @@ namespace Player.GrapplingGun
             {
                 if (block && Input.GetKey(KeyCode.Mouse0) && grappleRope.IsReady)
                 {
-                    block.MoveBlock(mCamera.ScreenToWorldPoint(Input.mousePosition));
+                    block.MoveBlock(cam.ScreenToWorldPoint(Input.mousePosition));
                 }
 
                 if (controlSupport)
@@ -90,8 +93,8 @@ namespace Player.GrapplingGun
 
         bool SetGrapplePoint()
         {
-            Vector2 direction = mCamera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
-            RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction.normalized, Mathf.Infinity, grappableLayerNumber);
+            Vector2 direction = cam.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+            RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, Mathf.Infinity, grappableArea);
             if (!hit) return false;
             if (Vector2.Distance(hit.point, firePoint.position) <= maxDistance || !hasMaxDistance) 
             {
@@ -106,13 +109,12 @@ namespace Player.GrapplingGun
                 {
                     state = State.Swing;
                 }
-                if (hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
+                if (hit.transform.GetComponent<Grappable>() || grappleToAll)
                 {
                     if(state != State.Control) grapplePoint = hit.point;
                     grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                     grappleRope.enabled = true;
-                    return true; 
-                    
+                    return true;
                 }
             }
             return false;
@@ -120,32 +122,32 @@ namespace Player.GrapplingGun
 
         public void Grapple()
         {
-            mSpringJoint2D.autoConfigureDistance = false;
+            sprintJoint.autoConfigureDistance = false;
             if (!launchToPoint && !autoConfigureDistance)
             {
-                mSpringJoint2D.distance = targetDistance;
-                mSpringJoint2D.frequency = targetFrequency;
+                sprintJoint.distance = targetDistance;
+                sprintJoint.frequency = targetFrequency;
             }
             if (!launchToPoint)
             {
                 if (autoConfigureDistance)
                 {
-                    mSpringJoint2D.autoConfigureDistance = true;
-                    mSpringJoint2D.frequency = 0;
+                    sprintJoint.autoConfigureDistance = true;
+                    sprintJoint.frequency = 0;
                 }
 
-                mSpringJoint2D.connectedAnchor = grapplePoint;
-                mSpringJoint2D.enabled = true;
+                sprintJoint.connectedAnchor = grapplePoint;
+                sprintJoint.enabled = true;
             }
             else
             {
-                mSpringJoint2D.connectedAnchor = grapplePoint;
+                sprintJoint.connectedAnchor = grapplePoint;
 
-                Vector2 distanceVector = firePoint.position - gunHolder.position;
+                Vector2 distanceVector = firePoint.position - playerTransform.position;
 
-                mSpringJoint2D.distance = distanceVector.magnitude;
-                mSpringJoint2D.frequency = launchSpeed;
-                mSpringJoint2D.enabled = true;
+                sprintJoint.distance = distanceVector.magnitude;
+                sprintJoint.frequency = launchSpeed;
+                sprintJoint.enabled = true;
             }
         }
 
@@ -155,7 +157,7 @@ namespace Player.GrapplingGun
             { 
                 if (launchToPoint) launchToPoint = false;
                 autoConfigureDistance = true;
-                if (!movement.GroundCheck())
+                if (!playerTransform.GetComponent<Ground>().GetOnGround())
                 {
                     KillRope();
                 }
@@ -182,8 +184,8 @@ namespace Player.GrapplingGun
         void KillRope()
         {
             grappleRope.enabled = false;
-            mSpringJoint2D.enabled = false;
-            mRigidbody.gravityScale = 2;
+            sprintJoint.enabled = false;
+            rb.gravityScale = 1;
             arm.SetActive(true);
             if(state == State.Swing) ExitSwing?.Invoke();
             else

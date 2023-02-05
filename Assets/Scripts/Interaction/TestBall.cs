@@ -8,7 +8,7 @@ namespace Interaction
 
         protected override void Initialize()
         {
-            rb = origin.GetComponent<Rigidbody2D>();
+            rb = parent.GetComponent<Rigidbody2D>();
         }
 
         public override void Interact()
