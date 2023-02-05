@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{46f5f932-bbc2-423a-8c5b-3032682c201f}">
+		<property name="assetPath">
+			<value>Sfxs/Footsteps/Grass footsteps/Mudinha_grass_footsteps6.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.3701814058956916</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c3cdf47a-0c86-4427-ba27-4c2a01f16667}</destination>
+		</relationship>
+	</object>
+</objects>
