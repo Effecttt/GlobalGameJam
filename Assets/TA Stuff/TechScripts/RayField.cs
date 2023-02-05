@@ -9,7 +9,8 @@ using Vector3 = UnityEngine.Vector3;
 public class RayField : MonoBehaviour
 {
     public Vector3 pintoOrigem;
-    public Vector3 pintoRotacional;
+    public int rayCount;
+    Vector3 pintoRotacional;
     
     [SerializeField] private LayerMask layerMask;
      private Mesh mesh;
@@ -42,8 +43,7 @@ public class RayField : MonoBehaviour
     }
 
     private void LateUpdate() {
-         int rayCount = 50;
-         float angle = startingAngle;
+        float angle = startingAngle;
          float angleIncrease = fov / rayCount;
 
          Vector3[] vertices = new Vector3[rayCount + 1 + 1];
