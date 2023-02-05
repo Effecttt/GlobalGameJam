@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{0baff4f0-17ed-4bbd-a946-48de8c11db25}">
-		<property name="note" />
 		<property name="name">
 			<value>Gameplay music</value>
 		</property>
@@ -54,7 +53,7 @@
 			<destination>{9ffd25bd-e815-4bc0-adab-2f90f634ca44}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{c08e650a-caa3-43f8-ba35-636320be8ed0}</destination>
+			<destination>{7aa0a3f9-d1a0-4522-9f6b-1da26fb451c7}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{17b21efc-bd11-42d7-aa14-bcab00ee98ee}" />
