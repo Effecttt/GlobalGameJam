@@ -32,7 +32,7 @@ Transform:
   - {fileID: 7054007226794310250}
   - {fileID: 7054007226103715661}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7054007225209963868
 GameObject:
@@ -387,6 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   parallaxEffect: 0.4
+  IsY: 0
 --- !u!1 &7054007226107931226
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   parallaxEffect: 0.8
+  IsY: 1
 --- !u!1 &7054007226736777240
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,3 +843,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   parallaxEffect: 0.6
+  IsY: 1

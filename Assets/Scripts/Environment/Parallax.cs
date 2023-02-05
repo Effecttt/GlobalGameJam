@@ -7,6 +7,7 @@ namespace Environment
     {
         [SerializeField] private Transform cam;
         [SerializeField] private float parallaxEffect;
+        [SerializeField] private bool IsY;
         
         private float length, startPos;
 
@@ -20,7 +21,8 @@ namespace Environment
         {
             float distance = cam.transform.position.x * parallaxEffect;
             float rePos = cam.transform.position.x * (1 - parallaxEffect);
-            transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
+            float y = IsY ? cam.transform.position.y : transform.position.y;
+            transform.position = new Vector3(startPos + distance, y, transform.position.z);
 
             if (rePos > startPos + length)
             {

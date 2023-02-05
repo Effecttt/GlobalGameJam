@@ -175,6 +175,7 @@
           </e>
         </e>
         <e p="TechScripts" t="Include">
+          <e p="BounceRay.cs" t="Include" />
           <e p="Ray_Raycast.cs" t="Include" />
         </e>
       </e>
