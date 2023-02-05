@@ -1,184 +1,210 @@
-﻿using UnityEngine;
+﻿using System;
+using Checks;
+using Environment;
+using Player.Capabilities;
+using Player.Movement;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.GrapplingGun
 {
     public class GrapplingGun : MonoBehaviour
     {
-        [Header("Scripts Ref:")]
-        public GrapplingRope grappleRope;
-
-        [Header("Layers Settings:")]
-        [SerializeField] private bool grappleToAll = false;
-        [SerializeField] private LayerMask grappableLayerNumber;
-
-        [Header("Main Camera:")]
-        public Camera m_camera;
-
-        [Header("Transform Ref:")]
-        public Transform gunHolder;
-        public Transform gunPivot;
+        public static event Action Swing, ExitSwing, EndRope;
         public Transform firePoint;
+        [HideInInspector]public GameObject controlSupport;
 
-        [Header("Physics Ref:")]
-        public SpringJoint2D m_springJoint2D;
-        public Rigidbody2D m_rigidbody;
+        [SerializeField] GrapplingRope grappleRope;
+        [SerializeField] private Move movement;
 
-        [Header("Rotation:")]
-        [SerializeField] private bool rotateOverTime = true;
-        [Range(0, 60)] [SerializeField] private float rotationSpeed = 4;
+        [SerializeField] private State state = State.Swing;
+        
+        [SerializeField] private bool grappleToAll;
+        [SerializeField] private LayerMask grappableArea;
 
-        [Header("Distance:")]
-        [SerializeField] private bool hasMaxDistance = false;
+        [FormerlySerializedAs("mCamera")] [SerializeField] Camera cam;
+
+        [SerializeField] Transform playerTransform;
+        [SerializeField] Transform gunPivot;
+        [SerializeField] private GameObject arm;
+
+        [FormerlySerializedAs("mSpringJoint2D")] [SerializeField] SpringJoint2D sprintJoint;
+        [FormerlySerializedAs("mRigidbody")] [SerializeField] Rigidbody2D rb;
+        
+        [SerializeField] private bool hasMaxDistance;
         [SerializeField] private float maxDistance = 20;
 
-        private enum LaunchType
-        {
-            Transform_Launch,
-            Physics_Launch
-        }
-
-        [Header("Launching:")]
-        [SerializeField] private bool launchToPoint = true;
-        [SerializeField] private LaunchType launchType = LaunchType.Physics_Launch;
+        [SerializeField] private bool launchToPoint;
         [SerializeField] private float launchSpeed = 1;
-
-        [Header("No Launch To Point")]
-        [SerializeField] private bool autoConfigureDistance = false;
+        
+        [SerializeField] private bool autoConfigureDistance;
         [SerializeField] private float targetDistance = 3;
-        [SerializeField] private float targetFrequncy = 1;
+        [SerializeField] private float targetFrequency = 1;
+        
+        [SerializeField]private ArmRotation armRot;
 
         [HideInInspector] public Vector2 grapplePoint;
         [HideInInspector] public Vector2 grappleDistanceVector;
 
+        private MovableBlock block;
+        private bool isControlling;
+
         private void Start()
         {
             grappleRope.enabled = false;
-            m_springJoint2D.enabled = false;
+            sprintJoint.enabled = false;
+        }
+        private void Update()
+        {
+            StateControl();
+            if (state == State.Control)
+            {
+                if (block && Input.GetKey(KeyCode.Mouse0) && grappleRope.IsReady)
+                {
+                    block.MoveBlock(cam.ScreenToWorldPoint(Input.mousePosition));
+                }
+
+                if (controlSupport)
+                {
+                    grapplePoint = controlSupport.transform.position;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    KillRope();   
+                }
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (SetGrapplePoint())
+                {
+                    Swing?.Invoke();
+                    arm.SetActive(false);
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.Mouse0) && state != State.Control)
+            {
+                KillRope();
+            }
 
         }
 
-        private void Update()
+        bool SetGrapplePoint()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            Vector2 direction = cam.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+            RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, Mathf.Infinity, grappableArea);
+            if (!hit) return false;
+            if (Vector2.Distance(hit.point, firePoint.position) <= maxDistance || !hasMaxDistance) 
             {
-                SetGrapplePoint();
-            }
-            else if (Input.GetKey(KeyCode.Mouse0))
-            {
-                if (grappleRope.enabled)
+                if (hit.transform.TryGetComponent(out block))
                 {
-                    RotateGun(grapplePoint, false);
+                    state = State.Control;
+                    controlSupport = new GameObject();
+                    controlSupport.transform.position = hit.point;
+                    controlSupport.transform.parent = hit.transform;
                 }
                 else
                 {
-                    Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-                    RotateGun(mousePos, true);
+                    state = State.Swing;
                 }
-
-                if (launchToPoint && grappleRope.isGrappling)
+                if (hit.transform.GetComponent<Grappable>() || grappleToAll)
                 {
-                    if (launchType == LaunchType.Transform_Launch)
-                    {
-                        Vector2 firePointDistance = firePoint.position - gunHolder.localPosition;
-                        Vector2 targetPos = grapplePoint - firePointDistance;
-                        gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
-                    }
+                    if(state != State.Control) grapplePoint = hit.point;
+                    grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+                    grappleRope.enabled = true;
+                    return true;
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                grappleRope.enabled = false;
-                m_springJoint2D.enabled = false;
-                m_rigidbody.gravityScale = 2;
-            }
-            else
-            {
-                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-                RotateGun(mousePos, true);
-            }
-        }
-
-        void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
-        {
-            Vector3 distanceVector = lookPoint - gunPivot.position;
-
-            float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-            if (rotateOverTime && allowRotationOverTime)
-            {
-                gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-            }
-            else
-            {
-                gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
-        }
-
-        void SetGrapplePoint()
-        {
-            Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
-            if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
-            {
-                RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
-                if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
-                {
-                    if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistance || !hasMaxDistance)
-                    {
-                        grapplePoint = _hit.point;
-                        grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                        grappleRope.enabled = true;
-                    }
-                }
-            }
+            return false;
         }
 
         public void Grapple()
         {
-            m_springJoint2D.autoConfigureDistance = false;
+            sprintJoint.autoConfigureDistance = false;
             if (!launchToPoint && !autoConfigureDistance)
             {
-                m_springJoint2D.distance = targetDistance;
-                m_springJoint2D.frequency = targetFrequncy;
+                sprintJoint.distance = targetDistance;
+                sprintJoint.frequency = targetFrequency;
             }
             if (!launchToPoint)
             {
                 if (autoConfigureDistance)
                 {
-                    m_springJoint2D.autoConfigureDistance = true;
-                    m_springJoint2D.frequency = 0;
+                    sprintJoint.autoConfigureDistance = true;
+                    sprintJoint.frequency = 0;
                 }
 
-                m_springJoint2D.connectedAnchor = grapplePoint;
-                m_springJoint2D.enabled = true;
+                sprintJoint.connectedAnchor = grapplePoint;
+                sprintJoint.enabled = true;
             }
             else
             {
-                switch (launchType)
-                {
-                    case LaunchType.Physics_Launch:
-                        m_springJoint2D.connectedAnchor = grapplePoint;
+                sprintJoint.connectedAnchor = grapplePoint;
 
-                        Vector2 distanceVector = firePoint.position - gunHolder.position;
+                Vector2 distanceVector = firePoint.position - playerTransform.position;
 
-                        m_springJoint2D.distance = distanceVector.magnitude;
-                        m_springJoint2D.frequency = launchSpeed;
-                        m_springJoint2D.enabled = true;
-                        break;
-                    case LaunchType.Transform_Launch:
-                        m_rigidbody.gravityScale = 0;
-                        m_rigidbody.velocity = Vector2.zero;
-                        break;
-                }
+                sprintJoint.distance = distanceVector.magnitude;
+                sprintJoint.frequency = launchSpeed;
+                sprintJoint.enabled = true;
             }
         }
 
-        private void OnDrawGizmosSelected()
+        void StateControl()
         {
-            if (firePoint != null && hasMaxDistance)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawWireSphere(firePoint.position, maxDistance);
+            if (state == State.Control)
+            { 
+                if (launchToPoint) launchToPoint = false;
+                autoConfigureDistance = true;
+                if (!playerTransform.GetComponent<Ground>().GetOnGround())
+                {
+                    KillRope();
+                }
+                movement.enabled = false;
+                armRot.enabled = false;
             }
+            else if (state == State.Swing)
+            {
+                autoConfigureDistance = false;
+                movement.enabled = true;
+                armRot.enabled = true;
+                if(controlSupport) Destroy(controlSupport);
+            }
+            else
+            {
+                autoConfigureDistance = false;
+                movement.enabled = true;
+                armRot.enabled = true;
+                if(controlSupport) Destroy(controlSupport);
+            }
+
         }
 
+        void KillRope()
+        {
+            grappleRope.enabled = false;
+            sprintJoint.enabled = false;
+            rb.gravityScale = 1;
+            arm.SetActive(true);
+            if(state == State.Swing) ExitSwing?.Invoke();
+            else
+            {
+                EndRope?.Invoke();
+            }
+            state = State.Default;
+        }
+
+        void SwitchRope()
+        {
+            //launchToPoint = !launchToPoint;
+        }
+
+        public enum State
+        {
+            Swing,
+            Control,
+            Default
+        }
     }
 }
