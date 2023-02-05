@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7980256481689354859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Musics/Menu music
+  m_EditorClassIdentifier: 
+  Path: event:/Musics/Menu music
+  Guid:
+    Data1: -422809604
+    Data2: 1121296143
+    Data3: -1067840851
+    Data4: 182147773
+  Banks:
+  - {fileID: -1118562486217809464}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120000
+--- !u!114 &-4942332255397059682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundscapes/Magic forest
+  m_EditorClassIdentifier: 
+  Path: event:/Soundscapes/Magic forest
+  Guid:
+    Data1: 413189022
+    Data2: 1099674626
+    Data3: 1644985513
+    Data4: -1545482011
+  Banks:
+  - {fileID: -1118562486217809464}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 48004
 --- !u!114 &-1118562486217809464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,10 +69,10 @@ MonoBehaviour:
   Path: FProject/Global/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638107112566114103
+  lastModified: 638112117991447727
   FileSizes:
   - Name: Desktop
-    Value: 1486
+    Value: 4975104
   Exists: 1
 --- !u!114 &-792624133224437600
 MonoBehaviour:
@@ -35,10 +89,10 @@ MonoBehaviour:
   Path: FProject/Global/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638107112566114103
+  lastModified: 638112117991477697
   FileSizes:
   - Name: Desktop
-    Value: 836
+    Value: 1088
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -55,11 +109,69 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: -792624133224437600}
   - {fileID: -1118562486217809464}
-  EditorEvents: []
+  EditorEvents:
+  - {fileID: -4942332255397059682}
+  - {fileID: 5103481832624280445}
+  - {fileID: 7700961369119810013}
+  - {fileID: -7980256481689354859}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1118562486217809464}
   StringsBanks:
   - {fileID: -792624133224437600}
-  cacheTime: 638107112566114103
+  cacheTime: 638112117991477697
   cacheVersion: 131601
+--- !u!114 &5103481832624280445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sfxs/Footsteps/Grass footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Sfxs/Footsteps/Grass footsteps
+  Guid:
+    Data1: -420024866
+    Data2: 1293125674
+    Data3: -1745716075
+    Data4: 1081821779
+  Banks:
+  - {fileID: -1118562486217809464}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 430
+--- !u!114 &7700961369119810013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Musics/Gameplay music
+  m_EditorClassIdentifier: 
+  Path: event:/Musics/Gameplay music
+  Guid:
+    Data1: 196080880
+    Data2: 1270683629
+    Data3: -565688663
+    Data4: 635113868
+  Banks:
+  - {fileID: -1118562486217809464}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 171353
