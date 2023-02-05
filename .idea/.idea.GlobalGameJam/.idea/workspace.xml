@@ -15,6 +15,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ScaleDownBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interaction/InteractEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/TransformDownBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnimationHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/InputController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2664F8FA-D8EE-44DB-A5A8-718D1585DE70/fb/32d2b753/SpringJoint2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" root0="FORCE_HIGHLIGHTING" />
@@ -35,7 +36,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Movement/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/InputController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Jump.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Checks/Ground.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/GrapplingGun/GrapplingGun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Environment/MovableBlock.cs" />
@@ -47,6 +47,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interaction/InteractableObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Move.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Environment/Parallax.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AnimationHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SongManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Jump.cs" />
       </list>
     </option>
   </component>
@@ -96,6 +99,7 @@
       <workItem from="1675460292996" duration="14567000" />
       <workItem from="1675520237439" duration="9855000" />
       <workItem from="1675565723137" duration="1795000" />
+      <workItem from="1675625068218" duration="2008000" />
     </task>
     <servers />
   </component>
