@@ -8,7 +8,23 @@ namespace Player.Movement
     [RequireComponent(typeof(BoxCollider2D))]
     public class PlayerMovement : MonoBehaviour
     {
-        //Main
+        
+    }
+
+    public enum State
+    {
+        Idle,
+        Moving,
+        Jumping,
+        Falling,
+        Swinging,
+        Climbing,
+        Default
+    }
+}
+
+
+/*//Main
         [SerializeField] private float speed, jumpForce, leapForce, extraHeightTest, climbDir;
         [SerializeField] private LayerMask platformLayerMask;
         
@@ -31,13 +47,13 @@ namespace Player.Movement
             
             velocityChanges = new Dictionary<State, float>()
             {
-                {State.Idle, 30},
-                {State.Moving, 30},
-                {State.Jumping, 0},
-                {State.Falling, 10},
-                {State.Swinging, 10},
-                {State.Climbing, 30},
-                {State.Default, 30}
+                {State.Idle, PlayerParameters.Instance.defaultSpeed},
+                {State.Moving, PlayerParameters.Instance.defaultSpeed},
+                {State.Jumping, PlayerParameters.Instance.jumpingSpeed},
+                {State.Falling, PlayerParameters.Instance.fallingSpeed},
+                {State.Swinging, PlayerParameters.Instance.swingSpeed},
+                {State.Climbing, PlayerParameters.Instance.defaultSpeed},
+                {State.Default, PlayerParameters.Instance.defaultSpeed}
             };
         }
 
@@ -160,7 +176,7 @@ namespace Player.Movement
                 {
                     if (GroundCheck())
                     {
-                        rb.gravityScale = 2;
+                        rb.gravityScale = PlayerParameters.Instance.rigidbodyGravityDefaultValue;
                         isClimbing = false;
                     }
                     else
@@ -180,7 +196,7 @@ namespace Player.Movement
                 climbDir = 0;
                 isClimbing = false;
                 state = State.Default;
-                rb.gravityScale = 2;
+                rb.gravityScale = PlayerParameters.Instance.rigidbodyGravityDefaultValue;
             }
         }
 
@@ -200,17 +216,4 @@ namespace Player.Movement
         void OnEndRope()
         {
             isSwinging = false;
-        }
-    }
-
-    public enum State
-    {
-        Idle,
-        Moving,
-        Jumping,
-        Falling,
-        Swinging,
-        Climbing,
-        Default
-    }
-}
+        }*/

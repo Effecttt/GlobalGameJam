@@ -5,21 +5,15 @@ namespace Player
 {
     public class PlayerInput : MonoBehaviour
     {
-        public static event Action JumpPressed, InteractPressed, SkillPressed;
-        public KeyCode jump, interact, skill = KeyCode.Q;
+        public static event Action InteractPressed, SkillPressed;
+        public KeyCode interact = KeyCode.E, skill = KeyCode.Q;
 
         private void Update()
         {
-            if (Input.GetKeyDown(jump))
-            {
-                JumpPressed?.Invoke();
-            }
-
             if (Input.GetKeyDown(interact))
             {
                 InteractPressed?.Invoke();
             }
-
             if (Input.GetKeyDown(skill))
             {
                 SkillPressed?.Invoke();
