@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/TransformDownBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Capabilities/Jump.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI Stuff/Controles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI Stuff/Credits.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -109,7 +110,7 @@
       <workItem from="1675460292996" duration="14567000" />
       <workItem from="1675520237439" duration="9855000" />
       <workItem from="1675565723137" duration="1795000" />
-      <workItem from="1675622700021" duration="2659000" />
+      <workItem from="1675622700021" duration="3804000" />
     </task>
     <servers />
   </component>
