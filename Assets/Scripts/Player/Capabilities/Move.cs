@@ -17,6 +17,7 @@ namespace Player.Capabilities
         private Vector2 velocity;
         private Rigidbody2D rb;
         private Ground ground;
+        private Animator anim;
 
         private float maxSpeedChange;
         private float acceleration;
@@ -26,12 +27,29 @@ namespace Player.Capabilities
         {
             rb = GetComponent<Rigidbody2D>();
             ground = GetComponent<Ground>();
+            anim = GetComponent<Animator>();
         }
 
         private void Update()
         {
             direction.x = input.RetrieveMoveInput();
             desiredVelocity = new Vector2(direction.x, 0) * Mathf.Max(maxSpeed - ground.GetFriction(),0f);
+            if (direction.x != 0)
+            {
+                anim.SetBool("IsRunning", true);
+                if (direction.x > 0)
+                {
+                    anim.SetBool("IsRight", true);
+                }
+                else
+                {
+                    anim.SetBool("IsRight", false);
+                }
+            }
+            else
+            {
+                anim.SetBool("IsRunning", false);
+            }
         }
 
         private void FixedUpdate()
